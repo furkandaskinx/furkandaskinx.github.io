@@ -1,0 +1,532 @@
+<title>Furkan Daşkın Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: #efe9df;
+    --surface: #faf7f1;
+    --surface-2: #e6dfd2;
+    --ink: #1e1a15;
+    --muted: #6b6258;
+    --line: #d8cfc0;
+    --accent: #b0651f;
+    --accent-ink: #ffffff;
+    --accent-2: #1f7a7a;
+    --shadow: 0 10px 30px rgba(40, 30, 15, .12);
+    --display: "Spectral", Georgia, "Times New Roman", serif;
+    --body: "Public Sans", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: "JetBrains Mono", Consolas, "Courier New", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #15171d;
+      --surface: #1e2129;
+      --surface-2: #262a34;
+      --ink: #ece6da;
+      --muted: #9a948a;
+      --line: #2e323d;
+      --accent: #e6a250;
+      --accent-ink: #1a1408;
+      --accent-2: #6fd0c8;
+      --shadow: 0 12px 34px rgba(0, 0, 0, .45);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #15171d;
+    --surface: #1e2129;
+    --surface-2: #262a34;
+    --ink: #ece6da;
+    --muted: #9a948a;
+    --line: #2e323d;
+    --accent: #e6a250;
+    --accent-ink: #1a1408;
+    --accent-2: #6fd0c8;
+    --shadow: 0 12px 34px rgba(0, 0, 0, .45);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
+  .wrap { max-width: 1180px; margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
+
+  /* ---------- nav ---------- */
+  .nav {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav .wrap { display: flex; align-items: center; gap: 18px; min-height: 56px; }
+  .brand { font-family: var(--display); font-weight: 600; font-size: 1.1rem; text-decoration: none; letter-spacing: .01em; white-space: nowrap; }
+  .nav-links { display: flex; gap: 4px; margin-left: auto; overflow-x: auto; scrollbar-width: none; }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a { text-decoration: none; font-size: .86rem; font-weight: 500; color: var(--muted); padding: 6px 10px; border-radius: 6px; white-space: nowrap; }
+  .nav-links a:hover, .nav-links a:focus-visible { color: var(--ink); background: var(--surface-2); outline: none; }
+  .lang {
+    display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; flex: none;
+    font-family: var(--mono); font-size: .74rem;
+  }
+  .lang button {
+    appearance: none; border: 0; background: transparent; color: var(--muted); padding: 5px 10px; cursor: pointer; font: inherit;
+  }
+  .lang button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+  .lang button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+  /* ---------- hero ---------- */
+  .hero { padding-block: clamp(36px, 7vw, 84px) clamp(28px, 5vw, 56px); }
+  .hero .wrap { display: grid; grid-template-columns: 1fr; gap: 28px; align-items: center; }
+  @media (min-width: 720px) { .hero .wrap { grid-template-columns: 1fr 240px; gap: 48px; } }
+  .eyebrow { font-family: var(--mono); font-size: .76rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0 0 14px; }
+  h1 { font-family: var(--display); font-weight: 700; font-size: clamp(2.3rem, 6vw, 4rem); line-height: 1.02; margin: 0 0 14px; letter-spacing: -.01em; text-wrap: balance; }
+  .lede { font-size: clamp(1.02rem, 1.6vw, 1.2rem); max-width: 60ch; color: var(--muted); margin: 0 0 22px; text-wrap: pretty; }
+  .contacts { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
+    border: 1px solid var(--line); background: var(--surface); padding: 8px 14px; border-radius: 999px; font-size: .9rem; font-weight: 500;
+  }
+  .chip:hover { border-color: var(--accent); }
+  .chip.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .chip svg { width: 16px; height: 16px; flex: none; }
+  .portrait { justify-self: start; }
+  @media (min-width: 720px) { .portrait { justify-self: end; } }
+  .portrait img {
+    width: 180px; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 12px;
+    box-shadow: var(--shadow); border: 1px solid var(--line);
+  }
+  @media (min-width: 720px) { .portrait img { width: 240px; } }
+
+  .skills { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); }
+  .skills .wrap { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 18px 28px; padding-block: 22px; }
+  .skill h3 { font-family: var(--mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; font-weight: 500; }
+  .skill p { margin: 0; font-size: .94rem; }
+
+  /* ---------- projects ---------- */
+  .project { padding-block: clamp(44px, 7vw, 88px); border-bottom: 1px solid var(--line); }
+  .project:last-of-type { border-bottom: 0; }
+  .p-head { display: grid; gap: 14px 40px; grid-template-columns: 1fr; margin-bottom: 26px; }
+  @media (min-width: 860px) { .p-head { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: end; } }
+  .p-head h2 { font-family: var(--display); font-weight: 600; font-size: clamp(1.7rem, 3.6vw, 2.5rem); line-height: 1.08; margin: 0 0 8px; text-wrap: balance; }
+  .p-head .desc { margin: 0; color: var(--muted); max-width: 58ch; text-wrap: pretty; }
+  .meta { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; font-size: .9rem; align-content: end; }
+  .meta dt { font-family: var(--mono); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding-top: 3px; }
+  .meta dd { margin: 0; }
+
+  .lead { margin-bottom: 14px; }
+  .lead figure, .grid figure { margin: 0; }
+  .lead img { width: 100%; aspect-ratio: 16 / 8.2; object-fit: cover; border-radius: 10px; border: 1px solid var(--line); cursor: zoom-in; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  @media (min-width: 640px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+  .grid img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 8px; border: 1px solid var(--line); cursor: zoom-in; transition: transform .25s ease, box-shadow .25s ease; }
+  .grid .wide { grid-column: span 2; }
+  .grid .wide img { aspect-ratio: 32 / 10.5; }
+  @media (prefers-reduced-motion: no-preference) {
+    .grid img:hover, .lead img:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  }
+  figcaption { font-size: .82rem; color: var(--muted); margin-top: 6px; }
+
+  .map-group { margin-top: 30px; }
+  .map-group:first-of-type { margin-top: 0; }
+  .map-head { display: grid; gap: 4px 28px; margin-bottom: 12px; grid-template-columns: 1fr; }
+  @media (min-width: 860px) { .map-head { grid-template-columns: 260px 1fr; align-items: baseline; } }
+  .map-head h3 { font-family: var(--display); font-weight: 600; font-size: 1.25rem; margin: 0; }
+  .map-head p { margin: 0; color: var(--muted); font-size: .93rem; max-width: 62ch; text-wrap: pretty; }
+  .videos { margin-top: 22px; display: grid; gap: 12px; grid-template-columns: 1fr; }
+  @media (min-width: 640px) { .videos { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); } }
+  .vcard {
+    display: grid; grid-template-rows: auto 1fr; text-decoration: none; background: var(--surface); border: 1px solid var(--line);
+    border-radius: 10px; overflow: hidden;
+  }
+  .vcard:hover { border-color: var(--accent); }
+  .vcard .thumb { position: relative; aspect-ratio: 16 / 9; background: var(--surface-2); display: grid; place-items: center; overflow: hidden; }
+  .vcard .thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .vcard .play {
+    position: absolute; width: 52px; height: 52px; border-radius: 50%; background: var(--accent); color: var(--accent-ink);
+    display: grid; place-items: center; box-shadow: var(--shadow);
+  }
+  .vcard .play svg { width: 20px; height: 20px; margin-left: 3px; }
+  .vcard .vbody { padding: 10px 12px 12px; }
+  .vcard .vtitle { font-weight: 600; font-size: .95rem; margin: 0 0 2px; }
+  .vcard .vsub { font-family: var(--mono); font-size: .72rem; color: var(--muted); margin: 0; letter-spacing: .04em; }
+
+  .video-only .videos { margin-top: 0; }
+
+  /* ---------- footer ---------- */
+  footer { padding-block: 34px 48px; color: var(--muted); font-size: .9rem; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; }
+
+  /* ---------- lightbox ---------- */
+  .lb { position: fixed; inset: 0; z-index: 50; background: rgba(8, 9, 12, .92); display: grid; grid-template-rows: 1fr auto; padding: 16px; }
+  .lb[hidden] { display: none !important; }
+  .lb img { max-width: 100%; max-height: calc(100vh - 110px); margin: auto; object-fit: contain; border-radius: 6px; }
+  .lb .bar { display: flex; align-items: center; justify-content: space-between; gap: 14px; color: #e8e4dc; padding-top: 10px; font-size: .9rem; }
+  .lb .cap { flex: 1; min-width: 0; }
+  .lb button {
+    appearance: none; border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.08); color: #fff;
+    width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 18px; display: grid; place-items: center;
+  }
+  .lb button:hover, .lb button:focus-visible { background: rgba(255,255,255,.18); outline: none; }
+  .lb .btns { display: flex; gap: 8px; }
+  .lb .counter { font-family: var(--mono); font-size: .74rem; opacity: .7; }
+</style>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">Furkan Daşkın</a>
+    <nav class="nav-links" aria-label="Projeler">
+      <a href="#cosmos-rift">The Cosmos Rift</a>
+      <a href="#vr-royale">VR Royale</a>
+      <a href="#rising-of-knight">Rising of Knight</a>
+      <a href="#gate-hunter">Gate Hunter</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Dil / Language">
+      <button type="button" id="lang-tr" data-lang="tr" aria-pressed="true">TR</button>
+      <button type="button" id="lang-en" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow" lang="en" data-tr="Level &amp; Environment Designer · Unity" data-en="Level &amp; Environment Designer · Unity">Level &amp; Environment Designer · Unity</p>
+        <h1>Furkan Daşkın</h1>
+        <p class="lede"
+           data-tr="Top-down RPG ve arena haritaları tasarlıyorum: blockout'tan ışıklandırılmış final sahneye kadar. Oyuncunun nereden geçeceğini, nerede duracağını ve neyi göreceğini planlayıp Unity'de kuruyorum."
+           data-en="I design top-down RPG and arena maps, from blockout to the lit final scene. I plan where the player walks, where they pause and what they see, then build it in Unity.">
+          Top-down RPG ve arena haritaları tasarlıyorum: blockout'tan ışıklandırılmış final sahneye kadar. Oyuncunun nereden geçeceğini, nerede duracağını ve neyi göreceğini planlayıp Unity'de kuruyorum.
+        </p>
+        <div class="contacts">
+          <a class="chip primary" href="mailto:furkandaskinx@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            <span data-tr="E-posta gönder" data-en="Send email">E-posta gönder</span>
+          </a>
+          <a class="chip" href="https://www.youtube.com/watch?v=PCOv-mjVAoI" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+            <span data-tr="Showreel: Cosmos Rift fragmanı" data-en="Showreel: Cosmos Rift trailer">Showreel: Cosmos Rift fragmanı</span>
+          </a>
+        </div>
+      </div>
+      <div class="portrait">
+        <img src="img/photo.jpg" alt="Furkan Daşkın" width="240" height="320">
+      </div>
+    </div>
+  </section>
+
+  <section class="skills" aria-label="Yetenekler">
+    <div class="wrap">
+      <div class="skill">
+        <h3 data-tr="Odak" data-en="Focus">Odak</h3>
+        <p data-tr="Level design, environment art, sahne kompozisyonu, ışıklandırma" data-en="Level design, environment art, scene composition, lighting">Level design, environment art, sahne kompozisyonu, ışıklandırma</p>
+      </div>
+      <div class="skill">
+        <h3 data-tr="Araçlar" data-en="Tools">Araçlar</h3>
+        <p>Unity, Unity Terrain</p>
+      </div>
+      <div class="skill">
+        <h3 data-tr="Türler" data-en="Genres">Türler</h3>
+        <p data-tr="Top-down ARPG, MMO açık dünya, arena / PvP, mobil" data-en="Top-down ARPG, MMO open world, arena / PvP, mobile">Top-down ARPG, MMO açık dünya, arena / PvP, mobil</p>
+      </div>
+      <div class="skill">
+        <h3 data-tr="Süreç" data-en="Process">Süreç</h3>
+        <p data-tr="Plan → greybox → set dressing → ışıklandırma → test" data-en="Plan → greybox → set dressing → lighting → test">Plan → greybox → set dressing → ışıklandırma → test</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= THE COSMOS RIFT ================= -->
+  <section class="project" id="cosmos-rift">
+    <div class="wrap">
+      <div class="p-head">
+        <div>
+          <p class="eyebrow" data-tr="Proje 01" data-en="Project 01">Proje 01</p>
+          <h2>The Cosmos Rift</h2>
+          <p class="desc" data-tr="Top-down aksiyon RPG. Üç oynanış haritası ve bir hikâye sahnesi: karanlık lav mağaraları, antik tapınak harabeleri, mezarlık ve nehir kenarı köy, buz kristalleriyle çevrili bir ara sahne. Her harita kendi renk sıcaklığı ve ışık kaynağı diliyle ayrışıyor." data-en="Top-down action RPG. Three gameplay maps and one story scene: dark lava caverns, ancient temple ruins, a graveyard and riverside village, and a cutscene set among ice crystals. Each map reads through its own colour temperature and light-source language.">Top-down aksiyon RPG. Üç oynanış haritası ve bir hikâye sahnesi: karanlık lav mağaraları, antik tapınak harabeleri, mezarlık ve nehir kenarı köy, buz kristalleriyle çevrili bir ara sahne. Her harita kendi renk sıcaklığı ve ışık kaynağı diliyle ayrışıyor.</p>
+        </div>
+        <dl class="meta">
+          <dt data-tr="Rol" data-en="Role">Rol</dt><dd data-tr="Level &amp; environment design, game design, ışıklandırma, set dressing" data-en="Level &amp; environment design, game design, lighting, set dressing">Level &amp; environment design, game design, ışıklandırma, set dressing</dd>
+          <dt data-tr="Motor" data-en="Engine">Motor</dt><dd>Unity</dd>
+          <dt data-tr="Tür" data-en="Genre">Tür</dt><dd data-tr="Top-down ARPG, mobil" data-en="Top-down ARPG, mobile">Top-down ARPG, mobil</dd>
+          <dt data-tr="Medya" data-en="Media">Medya</dt><dd data-tr="3 harita, 1 hikâye sahnesi, 3 video, fragman" data-en="3 maps, 1 story scene, 3 videos, trailer">3 harita, 1 hikâye sahnesi, 3 video, fragman</dd>
+        </dl>
+      </div>
+
+      <div class="map-group" id="cosmos-map-1">
+        <div class="map-head">
+          <h3 data-tr="Harita 1 · Lav mağaraları" data-en="Map 1 · Lava caverns">Harita 1 · Lav mağaraları</h3>
+          <p data-tr="Karanlık, sıcak ışıklı bir yeraltı bölgesi. Kızıl kristal damarları ve meşaleler yol ağını okutuyor; maden geçitleri ve kamp alanları savaş noktalarını belirliyor." data-en="A dark underground region lit by warm light. Red crystal veins and torches read the path network; mine passages and camps mark the combat spots.">Karanlık, sıcak ışıklı bir yeraltı bölgesi. Kızıl kristal damarları ve meşaleler yol ağını okutuyor; maden geçitleri ve kamp alanları savaş noktalarını belirliyor.</p>
+        </div>
+        <div class="grid">
+        <figure class="wide"><img src="img/cosmos-11.jpg" alt="" data-group="cosmos" data-cap-tr="Haritanın tamamı, kuşbakışı" data-cap-en="Full map, top-down"><figcaption data-tr="Haritanın tamamı, kuşbakışı" data-en="Full map, top-down">Haritanın tamamı, kuşbakışı</figcaption></figure>
+        <figure><img src="img/cosmos-08.jpg" alt="" data-group="cosmos" data-cap-tr="Genel görünüm, sahne sınırları" data-cap-en="Overview, scene bounds"><figcaption data-tr="Genel görünüm, sahne sınırları" data-en="Overview, scene bounds">Genel görünüm, sahne sınırları</figcaption></figure>
+        <figure><img src="img/cosmos-05.jpg" alt="" data-group="cosmos" data-cap-tr="Lav mağarası, kızıl kristal damarları" data-cap-en="Lava cavern, red crystal veins"><figcaption data-tr="Lav mağarası, kızıl kristal damarları" data-en="Lava cavern, red crystal veins">Lav mağarası, kızıl kristal damarları</figcaption></figure>
+        <figure><img src="img/cosmos-06.jpg" alt="" data-group="cosmos" data-cap-tr="Maden geçidi, ahşap iskele ve mineral kümeleri" data-cap-en="Mine passage, timber scaffold and mineral clusters"><figcaption data-tr="Maden geçidi, ahşap iskele ve mineral kümeleri" data-en="Mine passage, timber scaffold and mineral clusters">Maden geçidi, ahşap iskele ve mineral kümeleri</figcaption></figure>
+        <figure><img src="img/cosmos-14.jpg" alt="" data-group="cosmos" data-cap-tr="Kamp ateşleri ve düşman yerleşimi" data-cap-en="Campfires and enemy placement"><figcaption data-tr="Kamp ateşleri ve düşman yerleşimi" data-en="Campfires and enemy placement">Kamp ateşleri ve düşman yerleşimi</figcaption></figure>
+        </div>
+      </div>
+      <div class="map-group" id="cosmos-map-2">
+        <div class="map-head">
+          <h3 data-tr="Harita 2 · Tapınak harabeleri" data-en="Map 2 · Temple ruins">Harita 2 · Tapınak harabeleri</h3>
+          <p data-tr="Bulutların üstünde, yosun tutmuş kumtaşı harabeler. Uzun geçitler ve avlular oyuncuyu ritüel çemberlerine yönlendiriyor." data-en="Overgrown sandstone ruins above the clouds. Long causeways and courtyards steer the player toward the ritual circles.">Bulutların üstünde, yosun tutmuş kumtaşı harabeler. Uzun geçitler ve avlular oyuncuyu ritüel çemberlerine yönlendiriyor.</p>
+        </div>
+        <div class="grid">
+        <figure class="wide"><img src="img/cosmos-07.jpg" alt="" data-group="cosmos" data-cap-tr="Haritanın tamamı, kuşbakışı" data-cap-en="Full map, top-down"><figcaption data-tr="Haritanın tamamı, kuşbakışı" data-en="Full map, top-down">Haritanın tamamı, kuşbakışı</figcaption></figure>
+        <figure><img src="img/cosmos-04.jpg" alt="" data-group="cosmos" data-cap-tr="Tapınak avlusu, ritüel çemberleri" data-cap-en="Temple courtyard, ritual circles"><figcaption data-tr="Tapınak avlusu, ritüel çemberleri" data-en="Temple courtyard, ritual circles">Tapınak avlusu, ritüel çemberleri</figcaption></figure>
+        <figure><img src="img/cosmos-03.jpg" alt="" data-group="cosmos" data-cap-tr="Ana geçit" data-cap-en="Main causeway"><figcaption data-tr="Ana geçit" data-en="Main causeway">Ana geçit</figcaption></figure>
+        <figure><img src="img/cosmos-12.jpg" alt="" data-group="cosmos" data-cap-tr="Oyuncu bakışı, yosunlu duvarlar" data-cap-en="Player view, mossy walls"><figcaption data-tr="Oyuncu bakışı, yosunlu duvarlar" data-en="Player view, mossy walls">Oyuncu bakışı, yosunlu duvarlar</figcaption></figure>
+        <figure><img src="img/cosmos-13.jpg" alt="" data-group="cosmos" data-cap-tr="Geçitler, üst açı" data-cap-en="Walkways, high angle"><figcaption data-tr="Geçitler, üst açı" data-en="Walkways, high angle">Geçitler, üst açı</figcaption></figure>
+        </div>
+      </div>
+      <div class="map-group" id="cosmos-map-3">
+        <div class="map-head">
+          <h3 data-tr="Harita 3 · Mezarlık ve köy" data-en="Map 3 · Graveyard and village">Harita 3 · Mezarlık ve köy</h3>
+          <p data-tr="İki zıt atmosfer tek haritada: sisli, demir parmaklıklı bir mezarlık ve nehir kenarında taş köprülü bir köy." data-en="Two contrasting moods in one map: a foggy graveyard with iron fences and a riverside village with a stone bridge.">İki zıt atmosfer tek haritada: sisli, demir parmaklıklı bir mezarlık ve nehir kenarında taş köprülü bir köy.</p>
+        </div>
+        <div class="grid">
+        <figure class="wide"><img src="img/cosmos-02.jpg" alt="" data-group="cosmos" data-cap-tr="Nehir kenarı köy, taş köprü" data-cap-en="Riverside village, stone bridge"><figcaption data-tr="Nehir kenarı köy, taş köprü" data-en="Riverside village, stone bridge">Nehir kenarı köy, taş köprü</figcaption></figure>
+        <figure><img src="img/cosmos-01.jpg" alt="" data-group="cosmos" data-cap-tr="Mezarlık, sis ve demir parmaklıklar" data-cap-en="Graveyard, fog and iron fences"><figcaption data-tr="Mezarlık, sis ve demir parmaklıklar" data-en="Graveyard, fog and iron fences">Mezarlık, sis ve demir parmaklıklar</figcaption></figure>
+        </div>
+      </div>
+      <div class="map-group" id="cosmos-story">
+        <div class="map-head">
+          <h3 data-tr="Hikâye sahnesi" data-en="Story scene">Hikâye sahnesi</h3>
+          <p data-tr="Buz kristalleriyle çevrili bir ara sahne. Heykelli koridor ve yüzen ada, karakteri kadraja alacak şekilde kuruldu." data-en="A cutscene set among ice crystals. The statue hall and floating island were built to frame the character.">Buz kristalleriyle çevrili bir ara sahne. Heykelli koridor ve yüzen ada, karakteri kadraja alacak şekilde kuruldu.</p>
+        </div>
+        <div class="grid">
+        <figure class="wide"><img src="img/cosmos-10.jpg" alt="" data-group="cosmos" data-cap-tr="Heykelli koridor, karakter kadrajı" data-cap-en="Statue hall, character framing"><figcaption data-tr="Heykelli koridor, karakter kadrajı" data-en="Statue hall, character framing">Heykelli koridor, karakter kadrajı</figcaption></figure>
+        <figure><img src="img/cosmos-09.jpg" alt="" data-group="cosmos" data-cap-tr="Buz kristali yüzen ada" data-cap-en="Frozen crystal floating island"><figcaption data-tr="Buz kristali yüzen ada" data-en="Frozen crystal floating island">Buz kristali yüzen ada</figcaption></figure>
+        </div>
+      </div>
+
+      <div class="videos">
+        <a class="vcard" href="https://www.youtube.com/watch?v=PCOv-mjVAoI" target="_blank" rel="noopener">
+          <div class="thumb"><img src="img/yt-cosmos.jpg" alt=""><span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></span></div>
+          <div class="vbody"><p class="vtitle" data-tr="Fragman" data-en="Trailer">Fragman</p><p class="vsub">YouTube</p></div>
+        </a>
+        <a class="vcard" href="https://drive.google.com/file/d/1bak0kf-36x_tOGdqv9vtw3ppPaUcEzrj/view" target="_blank" rel="noopener">
+          <div class="thumb"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></span></div>
+          <div class="vbody"><p class="vtitle" data-tr="Açık dünya, ilk testler" data-en="Open world, first tests">Açık dünya, ilk testler</p><p class="vsub">Google Drive</p></div>
+        </a>
+        <a class="vcard" href="https://drive.google.com/file/d/1de2c0P4xb3GCIlGtMd3EYiaNce4TrMjD/view" target="_blank" rel="noopener">
+          <div class="thumb"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></span></div>
+          <div class="vbody"><p class="vtitle" data-tr="Harita 1 tanıtım videosu" data-en="Map 1 walkthrough">Harita 1 tanıtım videosu</p><p class="vsub">Google Drive</p></div>
+        </a>
+        <a class="vcard" href="https://drive.google.com/file/d/1Lwmuu-ZYf9oWsMHFa0wbeoGPShWI5r78/view" target="_blank" rel="noopener">
+          <div class="thumb"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></span></div>
+          <div class="vbody"><p class="vtitle" data-tr="Hikâye sahnesi tanıtım videosu" data-en="Story scene walkthrough">Hikâye sahnesi tanıtım videosu</p><p class="vsub">Google Drive</p></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= VR ROYALE ================= -->
+  <section class="project" id="vr-royale">
+    <div class="wrap">
+      <div class="p-head">
+        <div>
+          <p class="eyebrow" data-tr="Proje 02" data-en="Project 02">Proje 02</p>
+          <h2>VR Royale <span style="font-weight:500;color:var(--muted)">· Blockout</span></h2>
+          <p class="desc"
+             data-tr="Çok oyunculu VR arena için kale haritası blockout'u. Merkezi arena, çevresindeki kuleler, surlar ve iç odalar greybox olarak kuruldu. Amaç: görüş hatlarını, siper noktalarını ve çıkış rotalarını sanat aşamasına geçmeden test etmek."
+             data-en="Castle map blockout for a multiplayer VR arena. The central arena, surrounding towers, walls and interior rooms were greyboxed. Goal: test sightlines, cover spots and escape routes before any art pass.">
+            Çok oyunculu VR arena için kale haritası blockout'u. Merkezi arena, çevresindeki kuleler, surlar ve iç odalar greybox olarak kuruldu. Amaç: görüş hatlarını, siper noktalarını ve çıkış rotalarını sanat aşamasına geçmeden test etmek.
+          </p>
+        </div>
+        <dl class="meta">
+          <dt data-tr="Rol" data-en="Role">Rol</dt><dd data-tr="Level design, blockout / greybox" data-en="Level design, blockout / greybox">Level design, blockout / greybox</dd>
+          <dt data-tr="Motor" data-en="Engine">Motor</dt><dd>Unity</dd>
+          <dt data-tr="Tür" data-en="Genre">Tür</dt><dd data-tr="VR arena, çok oyunculu" data-en="VR arena, multiplayer">VR arena, çok oyunculu</dd>
+          <dt data-tr="Aşama" data-en="Stage">Aşama</dt><dd data-tr="Greybox, oynanabilir prototip" data-en="Greybox, playable prototype">Greybox, oynanabilir prototip</dd>
+        </dl>
+      </div>
+
+      <div class="lead">
+        <figure>
+          <img src="img/vr-02.jpg" alt="VR Royale kale blockout, izometrik görünüm" data-group="vr"
+               data-cap-tr="Kale blockout'u, izometrik görünüm. Kırmızı: zemin ve çatı düzlemleri, turuncu: duvar ve kule kütleleri, mavi: arena sınırı."
+               data-cap-en="Castle blockout, isometric view. Red: floor and roof planes, orange: wall and tower masses, blue: arena boundary.">
+          <figcaption data-tr="Kale blockout'u, izometrik görünüm. Kırmızı: zemin ve çatı düzlemleri, turuncu: duvar ve kule kütleleri, mavi: arena sınırı." data-en="Castle blockout, isometric view. Red: floor and roof planes, orange: wall and tower masses, blue: arena boundary.">Kale blockout'u, izometrik görünüm. Kırmızı: zemin ve çatı düzlemleri, turuncu: duvar ve kule kütleleri, mavi: arena sınırı.</figcaption>
+        </figure>
+      </div>
+
+      <div class="grid">
+        <figure><img src="img/vr-01.jpg" alt="" data-group="vr" data-cap-tr="Üstten plan. Simetrik arena, dört köşe kule ve iki ana giriş." data-cap-en="Top-down plan. Symmetric arena, four corner towers and two main entries."><figcaption data-tr="Üstten plan, simetrik arena" data-en="Top-down plan, symmetric arena">Üstten plan, simetrik arena</figcaption></figure>
+        <figure><img src="img/vr-03.jpg" alt="" data-group="vr" data-cap-tr="Karşı açıdan kütle dağılımı" data-cap-en="Mass distribution from the opposite angle"><figcaption data-tr="Karşı açıdan kütle dağılımı" data-en="Mass distribution from the opposite angle">Karşı açıdan kütle dağılımı</figcaption></figure>
+        <figure><img src="img/vr-04.jpg" alt="" data-group="vr" data-cap-tr="Arena zemininden oyuncu göz hizası. Kule ve kapı görüş hatları." data-cap-en="Player eye level from the arena floor. Tower and gate sightlines."><figcaption data-tr="Arena zemininden oyuncu göz hizası" data-en="Player eye level from the arena floor">Arena zemininden oyuncu göz hizası</figcaption></figure>
+        <figure><img src="img/vr-05.jpg" alt="" data-group="vr" data-cap-tr="İç oda, raf ve siper yerleşimi, tavan ışık noktaları" data-cap-en="Interior room, shelf and cover placement, ceiling light points"><figcaption data-tr="İç oda, siper yerleşimi" data-en="Interior room, cover placement">İç oda, siper yerleşimi</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= RISING OF KNIGHT ================= -->
+  <section class="project video-only" id="rising-of-knight">
+    <div class="wrap">
+      <div class="p-head">
+        <div>
+          <p class="eyebrow" data-tr="Proje 03" data-en="Project 03">Proje 03</p>
+          <h2>Rising of Knight</h2>
+          <p class="desc"
+             data-tr="Ortaçağ fantezi MMO. Açık dünya haritasının ilk test aşaması: arazi, bölge geçişleri ve ortam yerleşimi. Videoda açık dünyanın ilk oynanabilir hâli görülüyor."
+             data-en="Medieval fantasy MMO. First test stage of the open-world map: terrain, region transitions and environment placement. The video shows the first playable state of the open world.">
+            Ortaçağ fantezi MMO. Açık dünya haritasının ilk test aşaması: arazi, bölge geçişleri ve ortam yerleşimi. Videoda açık dünyanın ilk oynanabilir hâli görülüyor.
+          </p>
+        </div>
+        <dl class="meta">
+          <dt data-tr="Rol" data-en="Role">Rol</dt><dd data-tr="Level &amp; environment design, game design" data-en="Level &amp; environment design, game design">Level &amp; environment design, game design</dd>
+          <dt data-tr="Motor" data-en="Engine">Motor</dt><dd>Unity</dd>
+          <dt data-tr="Tür" data-en="Genre">Tür</dt><dd data-tr="MMO, açık dünya" data-en="MMO, open world">MMO, açık dünya</dd>
+          <dt data-tr="Medya" data-en="Media">Medya</dt><dd data-tr="Açık dünya ilk test videosu" data-en="Open-world first test video">Açık dünya ilk test videosu</dd>
+        </dl>
+      </div>
+      <div class="videos">
+        <a class="vcard" href="https://drive.google.com/file/d/1cLCIK2mbPAAvnJy6GGB0bbgM6NNgslty/view" target="_blank" rel="noopener">
+          <div class="thumb"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></span></div>
+          <div class="vbody"><p class="vtitle" data-tr="Açık dünya, ilk testler" data-en="Open world, first tests">Açık dünya, ilk testler</p><p class="vsub">Google Drive</p></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= GATE HUNTER ================= -->
+  <section class="project video-only" id="gate-hunter">
+    <div class="wrap">
+      <div class="p-head">
+        <div>
+          <p class="eyebrow" data-tr="Proje 04" data-en="Project 04">Proje 04</p>
+          <h2>Gate Hunter</h2>
+          <p class="desc"
+             data-tr="Unity'deki ilk projem. FMC Game Studio bünyesinde geliştirilen mobil aksiyon oyunu için bölüm haritaları ve ortam kurulumu. Sahne yerleşimi mobil performans bütçesine göre sadeleştirildi: daha az prop, birleştirilmiş mesh'ler ve düşük çizim maliyeti."
+             data-en="My first Unity project. Level maps and environment setup for a mobile action game developed at FMC Game Studio. Scene layout was kept lean for the mobile performance budget: fewer props, merged meshes and a low draw cost.">
+            Unity'deki ilk projem. FMC Game Studio bünyesinde geliştirilen mobil aksiyon oyunu için bölüm haritaları ve ortam kurulumu. Sahne yerleşimi mobil performans bütçesine göre sadeleştirildi: daha az prop, birleştirilmiş mesh'ler ve düşük çizim maliyeti.
+          </p>
+        </div>
+        <dl class="meta">
+          <dt data-tr="Stüdyo" data-en="Studio">Stüdyo</dt><dd>FMC Game Studio</dd>
+          <dt data-tr="Rol" data-en="Role">Rol</dt><dd data-tr="Level &amp; environment design, game design" data-en="Level &amp; environment design, game design">Level &amp; environment design, game design</dd>
+          <dt data-tr="Platform" data-en="Platform">Platform</dt><dd data-tr="Mobil (Android)" data-en="Mobile (Android)">Mobil (Android)</dd>
+        </dl>
+      </div>
+      <div class="videos">
+        <a class="vcard" href="https://www.youtube.com/watch?v=1dV9LGG8VbU" target="_blank" rel="noopener">
+          <div class="thumb"><img src="img/yt-gate.jpg" alt=""><span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></span></div>
+          <div class="vbody"><p class="vtitle" data-tr="Oynanış videosu, ilk Unity projesi" data-en="Gameplay video, first Unity project">Oynanış videosu, ilk Unity projesi</p><p class="vsub">YouTube</p></div>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Furkan Daşkın</span>
+    <a href="mailto:furkandaskinx@gmail.com">furkandaskinx@gmail.com</a>
+  </div>
+</footer>
+
+<div class="lb" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Görsel">
+  <img id="lb-img" src="" alt="">
+  <div class="bar">
+    <div class="cap"><div id="lb-cap"></div><div class="counter" id="lb-count"></div></div>
+    <div class="btns">
+      <button type="button" id="lb-prev" aria-label="Önceki">&#8249;</button>
+      <button type="button" id="lb-next" aria-label="Sonraki">&#8250;</button>
+      <button type="button" id="lb-close" aria-label="Kapat">&#215;</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  /* ---------- language ---------- */
+  var lang = 'tr';
+  try {
+    var saved = localStorage.getItem('fd-lang');
+    if (saved === 'tr' || saved === 'en') lang = saved;
+    else if (!(navigator.language || '').toLowerCase().startsWith('tr')) lang = 'en';
+  } catch (e) {}
+
+  function applyLang(l) {
+    lang = l;
+    document.documentElement.lang = l;
+    var nodes = document.querySelectorAll('[data-tr]');
+    for (var i = 0; i < nodes.length; i++) {
+      var n = nodes[i];
+      var v = n.getAttribute(l === 'tr' ? 'data-tr' : 'data-en');
+      if (v != null) n.innerHTML = v;
+    }
+    var btns = document.querySelectorAll('.lang button');
+    for (var j = 0; j < btns.length; j++) btns[j].setAttribute('aria-pressed', btns[j].getAttribute('data-lang') === l ? 'true' : 'false');
+    var labels = l === 'tr' ? ['Önceki', 'Sonraki', 'Kapat'] : ['Previous', 'Next', 'Close'];
+    document.getElementById('lb-prev').setAttribute('aria-label', labels[0]);
+    document.getElementById('lb-next').setAttribute('aria-label', labels[1]);
+    document.getElementById('lb-close').setAttribute('aria-label', labels[2]);
+    try { localStorage.setItem('fd-lang', l); } catch (e) {}
+    if (current) renderLb();
+  }
+  var langBtns = document.querySelectorAll('.lang button');
+  for (var k = 0; k < langBtns.length; k++) {
+    langBtns[k].addEventListener('click', function () { applyLang(this.getAttribute('data-lang')); });
+  }
+
+  /* ---------- lightbox ---------- */
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lb-img');
+  var lbCap = document.getElementById('lb-cap');
+  var lbCount = document.getElementById('lb-count');
+  var current = null; // {group, index}
+  var groups = {};
+  var imgs = document.querySelectorAll('img[data-group]');
+  for (var m = 0; m < imgs.length; m++) {
+    var g = imgs[m].getAttribute('data-group');
+    (groups[g] = groups[g] || []).push(imgs[m]);
+    imgs[m].addEventListener('click', (function (el) {
+      return function () { open(el.getAttribute('data-group'), groups[el.getAttribute('data-group')].indexOf(el)); };
+    })(imgs[m]));
+    imgs[m].setAttribute('tabindex', '0');
+    imgs[m].setAttribute('role', 'button');
+    imgs[m].addEventListener('keydown', (function (el) {
+      return function (ev) { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); el.click(); } };
+    })(imgs[m]));
+  }
+  var lastFocus = null;
+  function open(g, i) { lastFocus = document.activeElement; current = { group: g, index: i }; renderLb(); lb.hidden = false; document.body.style.overflow = 'hidden'; document.getElementById('lb-close').focus(); }
+  function close() { lb.hidden = true; current = null; document.body.style.overflow = ''; if (lastFocus && lastFocus.focus) lastFocus.focus(); }
+  function step(d) { if (!current) return; var arr = groups[current.group]; current.index = (current.index + d + arr.length) % arr.length; renderLb(); }
+  function renderLb() {
+    var arr = groups[current.group]; var el = arr[current.index];
+    lbImg.src = el.getAttribute('data-full') || el.getAttribute('src');
+    var cap = el.getAttribute(lang === 'tr' ? 'data-cap-tr' : 'data-cap-en') || '';
+    lbCap.textContent = cap; lbImg.alt = cap;
+    lbCount.textContent = (current.index + 1) + ' / ' + arr.length;
+  }
+  document.getElementById('lb-close').addEventListener('click', close);
+  document.getElementById('lb-prev').addEventListener('click', function () { step(-1); });
+  document.getElementById('lb-next').addEventListener('click', function () { step(1); });
+  lb.addEventListener('click', function (ev) { if (ev.target === lb || ev.target === lbImg) close(); });
+  document.addEventListener('keydown', function (ev) {
+    if (lb.hidden) return;
+    if (ev.key === 'Escape') close();
+    else if (ev.key === 'ArrowLeft') step(-1);
+    else if (ev.key === 'ArrowRight') step(1);
+  });
+  var tx = null;
+  lb.addEventListener('touchstart', function (ev) { tx = ev.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', function (ev) {
+    if (tx == null) return; var dx = ev.changedTouches[0].clientX - tx; tx = null;
+    if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1);
+  }, { passive: true });
+
+  applyLang(lang);
+})();
+</script>
