@@ -137,6 +137,15 @@
   }
   figcaption { font-size: .82rem; color: var(--muted); margin-top: 6px; }
 
+  .grid.native img { aspect-ratio: auto; height: auto; }
+  .grid.grid-1 { grid-template-columns: 1fr; }
+  .grid.grid-2 { grid-template-columns: 1fr; }
+  .grid.grid-3 { grid-template-columns: 1fr; }
+  .grid.top { align-items: start; }
+  @media (min-width: 640px) {
+    .grid.grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid.grid-3 { grid-template-columns: repeat(3, 1fr); }
+  }
   .map-group { margin-top: 30px; }
   .map-group:first-of-type { margin-top: 0; }
   .map-head { display: grid; gap: 4px 28px; margin-bottom: 12px; grid-template-columns: 1fr; }
@@ -251,7 +260,7 @@
         <div>
           <p class="eyebrow" data-tr="Proje 01 · Google Play'de yayında" data-en="Project 01 · Live on Google Play">Proje 01 · Google Play'de yayında</p>
           <h2>Lane Defense: Element Odyssey</h2>
-          <p class="desc" data-tr="Gerçek zamanlı şerit savunma stratejisi. Üç dünyadan oluşan açık dünya kampanyası, bölge ve arena haritaları, 1v1 PvP ve 100 katlı kule. 3 kişilik ekipte harita ve arena sahnelerinin kurulumu, set dressing ve ışıklandırması; draft kartları ve denge tarafında oyun tasarımı; düzenli playtest ve hata raporlama benim işimdi." data-en="Real-time lane defense strategy. An open-world campaign across three worlds, region and arena maps, 1v1 PvP and a 100-floor tower. In a three-person team I built and dressed the map and arena scenes and set their lighting, worked on game design for draft cards and balance, and ran regular playtests and bug reports.">Gerçek zamanlı şerit savunma stratejisi. Üç dünyadan oluşan açık dünya kampanyası, bölge ve arena haritaları, 1v1 PvP ve 100 katlı kule. 3 kişilik ekipte harita ve arena sahnelerinin kurulumu, set dressing ve ışıklandırması; draft kartları ve denge tarafında oyun tasarımı; düzenli playtest ve hata raporlama benim işimdi.</p>
+          <p class="desc" data-tr="Gerçek zamanlı şerit savunma stratejisi. Altı element bölgesinden oluşan açık dünya, bölge başına arena haritaları, 1v1 PvP ve 100 katlı kule. Üç kişilik ekipte bölge ve arena sahnelerinin kurulumu, set dressing ve ışıklandırması; draft kartları ve denge tarafında oyun tasarımı; düzenli playtest ve hata raporlama benim işimdi." data-en="Real-time lane defense strategy. An open world of six elemental regions, arena maps per region, 1v1 PvP and a 100-floor tower. In a three-person team I built and dressed the region and arena scenes and set their lighting, worked on game design for draft cards and balance, and ran regular playtests and bug reports.">Gerçek zamanlı şerit savunma stratejisi. Altı element bölgesinden oluşan açık dünya, bölge başına arena haritaları, 1v1 PvP ve 100 katlı kule. Üç kişilik ekipte bölge ve arena sahnelerinin kurulumu, set dressing ve ışıklandırması; draft kartları ve denge tarafında oyun tasarımı; düzenli playtest ve hata raporlama benim işimdi.</p>
           <p style="margin:14px 0 0"><a class="chip" href="https://play.google.com/store/apps/details?id=com.DTeam.ElementalLaneDefense" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4"/></svg>
             <span data-tr="Google Play'de aç" data-en="Open on Google Play">Google Play'de aç</span></a></p>
@@ -264,54 +273,38 @@
         </dl>
       </div>
 
-      <div class="map-group" id="lane-ingame">
+      <div class="map-group" id="lane-hubs">
         <div class="map-head">
-          <h3 data-tr="Oyun içi" data-en="In game">Oyun içi</h3>
-          <p data-tr="Açık dünya bölgeleri, ana üs ve şerit savaşları. Mağaza ekran görüntüleri." data-en="Open-world regions, the hub and lane battles. Store screenshots.">Açık dünya bölgeleri, ana üs ve şerit savaşları. Mağaza ekran görüntüleri.</p>
+          <h3 data-tr="Bölge merkezleri" data-en="Region hubs">Bölge merkezleri</h3>
+          <p data-tr="Aynı plan, altı element. Her bölgede arena, demirci, kule, pazar ve portal aynı yerde durur; zemin, bitki örtüsü, ışık ve renk sıcaklığı bölgeyi anlatır. Oyuncu haritayı bir kez öğrenir, altı kez keşfeder." data-en="One plan, six elements. Arena, forge, tower, market and portal sit in the same place in every region; ground, vegetation, light and colour temperature tell the region apart. The player learns the map once and explores it six times.">Aynı plan, altı element. Her bölgede arena, demirci, kule, pazar ve portal aynı yerde durur; zemin, bitki örtüsü, ışık ve renk sıcaklığı bölgeyi anlatır. Oyuncu haritayı bir kez öğrenir, altı kez keşfeder.</p>
         </div>
-        <div class="grid">
-        <figure class="wide"><img src="img/lane-ss-02.jpg" alt="" data-group="lane" data-cap-tr="Volkanik bölge, açık dünya" data-cap-en="Volcanic region, open world"><figcaption data-tr="Volkanik bölge, açık dünya" data-en="Volcanic region, open world">Volkanik bölge, açık dünya</figcaption></figure>
-        <figure><img src="img/lane-ss-03.jpg" alt="" data-group="lane" data-cap-tr="Yeşil ova, açık dünya keşfi" data-cap-en="Green plain, open-world exploration"><figcaption data-tr="Yeşil ova, açık dünya keşfi" data-en="Green plain, open-world exploration">Yeşil ova, açık dünya keşfi</figcaption></figure>
-        <figure><img src="img/lane-ss-05.jpg" alt="" data-group="lane" data-cap-tr="Ana üs: arena, demirci, kule, pazar ve portal" data-cap-en="Hub: arena, forge, tower, market and portal"><figcaption data-tr="Ana üs: arena, demirci, kule, pazar ve portal" data-en="Hub: arena, forge, tower, market and portal">Ana üs: arena, demirci, kule, pazar ve portal</figcaption></figure>
-        <figure><img src="img/lane-ss-04.jpg" alt="" data-group="lane" data-cap-tr="Şelale kenarında dünya sandığı" data-cap-en="World chest by the waterfall"><figcaption data-tr="Şelale kenarında dünya sandığı" data-en="World chest by the waterfall">Şelale kenarında dünya sandığı</figcaption></figure>
-        <figure><img src="img/lane-ss-06.jpg" alt="" data-group="lane" data-cap-tr="Şerit savaşı, çöl arenası" data-cap-en="Lane battle, desert arena"><figcaption data-tr="Şerit savaşı, çöl arenası" data-en="Lane battle, desert arena">Şerit savaşı, çöl arenası</figcaption></figure>
-        <figure><img src="img/lane-ss-07.jpg" alt="" data-group="lane" data-cap-tr="Şerit savaşı, bölge ele geçirme" data-cap-en="Lane battle, seizing territory"><figcaption data-tr="Şerit savaşı, bölge ele geçirme" data-en="Lane battle, seizing territory">Şerit savaşı, bölge ele geçirme</figcaption></figure>
-        <figure><img src="img/lane-ss-08.jpg" alt="" data-group="lane" data-cap-tr="1v1 PvP maçı" data-cap-en="1v1 PvP match"><figcaption data-tr="1v1 PvP maçı" data-en="1v1 PvP match">1v1 PvP maçı</figcaption></figure>
+        <div class="grid grid-2 native">
+        <figure><img src="img/lane-hub-lava.jpg" alt="" data-group="lane" data-cap-tr="Lav bölgesi" data-cap-en="Lava region"><figcaption data-tr="Lav bölgesi" data-en="Lava region">Lav bölgesi</figcaption></figure>
+        <figure><img src="img/lane-hub-green.jpg" alt="" data-group="lane" data-cap-tr="Yeşil ova" data-cap-en="Green plains"><figcaption data-tr="Yeşil ova" data-en="Green plains">Yeşil ova</figcaption></figure>
+        <figure><img src="img/lane-hub-crystal.jpg" alt="" data-group="lane" data-cap-tr="Kristal bölgesi" data-cap-en="Crystal region"><figcaption data-tr="Kristal bölgesi" data-en="Crystal region">Kristal bölgesi</figcaption></figure>
+        <figure><img src="img/lane-hub-desert.jpg" alt="" data-group="lane" data-cap-tr="Çöl bölgesi" data-cap-en="Desert region"><figcaption data-tr="Çöl bölgesi" data-en="Desert region">Çöl bölgesi</figcaption></figure>
+        <figure><img src="img/lane-hub-shadow.jpg" alt="" data-group="lane" data-cap-tr="Gölge bölgesi" data-cap-en="Shadow region"><figcaption data-tr="Gölge bölgesi" data-en="Shadow region">Gölge bölgesi</figcaption></figure>
+        <figure><img src="img/lane-hub-snow.jpg" alt="" data-group="lane" data-cap-tr="Kar bölgesi" data-cap-en="Snow region"><figcaption data-tr="Kar bölgesi" data-en="Snow region">Kar bölgesi</figcaption></figure>
         </div>
       </div>
-      <div class="map-group" id="lane-castle">
+      <div class="map-group" id="lane-battle">
         <div class="map-head">
-          <h3 data-tr="Kale bölgesi arenaları" data-en="Castle region arenas">Kale bölgesi arenaları</h3>
-          <p data-tr="Karanlık taş avlular, kızıl gökyüzü ve meşale ışığı. Dört arena aynı yapı dilini paylaşıyor, şerit yerleşimi her birinde farklı." data-en="Dark stone courtyards, red sky and torchlight. Four arenas share one architectural language with a different lane layout each.">Karanlık taş avlular, kızıl gökyüzü ve meşale ışığı. Dört arena aynı yapı dilini paylaşıyor, şerit yerleşimi her birinde farklı.</p>
+          <h3 data-tr="Şerit savaşı" data-en="Lane battle">Şerit savaşı</h3>
+          <p data-tr="Savaş sahnesi: iki üs, ortada tek şerit, kenarlarda nehir ve çitler. Dekor okunurluğu bozmayacak şekilde şeridin dışında tutuldu." data-en="Battle scene: two bases, a single lane between them, river and fences at the edges. Dressing stays off the lane so the fight remains readable.">Savaş sahnesi: iki üs, ortada tek şerit, kenarlarda nehir ve çitler. Dekor okunurluğu bozmayacak şekilde şeridin dışında tutuldu.</p>
         </div>
-        <div class="grid">
-        <figure><img src="img/lane-castle-1.jpg" alt="" data-group="lane" data-cap-tr="Kale · Arena 1" data-cap-en="Castle · Arena 1"><figcaption data-tr="Kale · Arena 1" data-en="Castle · Arena 1">Kale · Arena 1</figcaption></figure>
-        <figure><img src="img/lane-castle-2.jpg" alt="" data-group="lane" data-cap-tr="Kale · Arena 2, ritüel avlusu" data-cap-en="Castle · Arena 2, ritual courtyard"><figcaption data-tr="Kale · Arena 2, ritüel avlusu" data-en="Castle · Arena 2, ritual courtyard">Kale · Arena 2, ritüel avlusu</figcaption></figure>
-        <figure><img src="img/lane-castle-3.jpg" alt="" data-group="lane" data-cap-tr="Kale · Arena 3" data-cap-en="Castle · Arena 3"><figcaption data-tr="Kale · Arena 3" data-en="Castle · Arena 3">Kale · Arena 3</figcaption></figure>
-        <figure><img src="img/lane-castle-4.jpg" alt="" data-group="lane" data-cap-tr="Kale · Arena 4" data-cap-en="Castle · Arena 4"><figcaption data-tr="Kale · Arena 4" data-en="Castle · Arena 4">Kale · Arena 4</figcaption></figure>
+        <div class="grid grid-1 native">
+        <figure class="full"><img src="img/lane-battle.jpg" alt="" data-group="lane" data-cap-tr="Orman arenasında şerit savaşı" data-cap-en="Lane battle in the forest arena"><figcaption data-tr="Orman arenasında şerit savaşı" data-en="Lane battle in the forest arena">Orman arenasında şerit savaşı</figcaption></figure>
         </div>
       </div>
-      <div class="map-group" id="lane-desert">
+      <div class="map-group" id="lane-arenas">
         <div class="map-head">
-          <h3 data-tr="Çöl bölgesi arenaları" data-en="Desert region arenas">Çöl bölgesi arenaları</h3>
-          <p data-tr="Kolezyum, kaya oluşumları ve kervan kampları. Sıcak, açık renk paleti ilk dünyanın kolay okunmasını sağlıyor." data-en="Colosseum, rock formations and caravan camps. A warm, light palette keeps the first world easy to read.">Kolezyum, kaya oluşumları ve kervan kampları. Sıcak, açık renk paleti ilk dünyanın kolay okunmasını sağlıyor.</p>
+          <h3 data-tr="Arena haritaları" data-en="Arena maps">Arena haritaları</h3>
+          <p data-tr="Üç bölge, on bir arena. Her bölge kendi yapı dilini korur, şerit yerleşimi arenadan arenaya değişir." data-en="Three regions, eleven arenas. Each region keeps its own architectural language while the lane layout changes from arena to arena.">Üç bölge, on bir arena. Her bölge kendi yapı dilini korur, şerit yerleşimi arenadan arenaya değişir.</p>
         </div>
-        <div class="grid">
-        <figure><img src="img/lane-desert-1.jpg" alt="" data-group="lane" data-cap-tr="Çöl · Kolezyum arenası" data-cap-en="Desert · Colosseum arena"><figcaption data-tr="Çöl · Kolezyum arenası" data-en="Desert · Colosseum arena">Çöl · Kolezyum arenası</figcaption></figure>
-        <figure><img src="img/lane-desert-2.jpg" alt="" data-group="lane" data-cap-tr="Çöl · Kaya vadisi" data-cap-en="Desert · Rock valley"><figcaption data-tr="Çöl · Kaya vadisi" data-en="Desert · Rock valley">Çöl · Kaya vadisi</figcaption></figure>
-        <figure><img src="img/lane-desert-3.jpg" alt="" data-group="lane" data-cap-tr="Çöl · Kervan kampı" data-cap-en="Desert · Caravan camp"><figcaption data-tr="Çöl · Kervan kampı" data-en="Desert · Caravan camp">Çöl · Kervan kampı</figcaption></figure>
-        </div>
-      </div>
-      <div class="map-group" id="lane-jungle">
-        <div class="map-head">
-          <h3 data-tr="Orman bölgesi arenaları" data-en="Forest region arenas">Orman bölgesi arenaları</h3>
-          <p data-tr="Nehir kenarı, köprüler ve taş yollar. Dört arena su ve yolun konumuyla birbirinden ayrışıyor." data-en="Riverbanks, bridges and stone paths. The four arenas differ by where the water and the road sit.">Nehir kenarı, köprüler ve taş yollar. Dört arena su ve yolun konumuyla birbirinden ayrışıyor.</p>
-        </div>
-        <div class="grid">
-        <figure><img src="img/lane-jungle-1.jpg" alt="" data-group="lane" data-cap-tr="Orman · Arena 1" data-cap-en="Forest · Arena 1"><figcaption data-tr="Orman · Arena 1" data-en="Forest · Arena 1">Orman · Arena 1</figcaption></figure>
-        <figure><img src="img/lane-jungle-2.jpg" alt="" data-group="lane" data-cap-tr="Orman · Arena 2" data-cap-en="Forest · Arena 2"><figcaption data-tr="Orman · Arena 2" data-en="Forest · Arena 2">Orman · Arena 2</figcaption></figure>
-        <figure><img src="img/lane-jungle-3.jpg" alt="" data-group="lane" data-cap-tr="Orman · Arena 3" data-cap-en="Forest · Arena 3"><figcaption data-tr="Orman · Arena 3" data-en="Forest · Arena 3">Orman · Arena 3</figcaption></figure>
-        <figure><img src="img/lane-jungle-4.jpg" alt="" data-group="lane" data-cap-tr="Orman · Arena 4" data-cap-en="Forest · Arena 4"><figcaption data-tr="Orman · Arena 4" data-en="Forest · Arena 4">Orman · Arena 4</figcaption></figure>
+        <div class="grid grid-3 native top">
+        <figure><img src="img/lane-arenas-castle.jpg" alt="" data-group="lane" data-cap-tr="Kale bölgesi · 4 arena" data-cap-en="Castle region · 4 arenas"><figcaption data-tr="Kale bölgesi · 4 arena" data-en="Castle region · 4 arenas">Kale bölgesi · 4 arena</figcaption></figure>
+        <figure><img src="img/lane-arenas-desert.jpg" alt="" data-group="lane" data-cap-tr="Çöl bölgesi · 3 arena" data-cap-en="Desert region · 3 arenas"><figcaption data-tr="Çöl bölgesi · 3 arena" data-en="Desert region · 3 arenas">Çöl bölgesi · 3 arena</figcaption></figure>
+        <figure><img src="img/lane-arenas-jungle.jpg" alt="" data-group="lane" data-cap-tr="Orman bölgesi · 4 arena" data-cap-en="Forest region · 4 arenas"><figcaption data-tr="Orman bölgesi · 4 arena" data-en="Forest region · 4 arenas">Orman bölgesi · 4 arena</figcaption></figure>
         </div>
       </div>
     </div>
